@@ -1,0 +1,259 @@
+@charset "UTF-8";
+:root {
+    --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --primary: #57a;
+    --secondary: #970;
+    --primary-hover: #379;
+    --overlay-color:#48d7;
+    --white: #eef;
+    --grey: #ccc;
+    --primary-transparent: rgba(85, 119, 170, .6);
+	--danger: rgb(240, 22, 5);
+	--success: #5cb85c;
+}
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    outline:0;
+    font-family: var(--font-family-sans-serif);
+}
+
+.hidden{
+    display: none;
+}
+
+.table {
+	width: 80%;
+	margin: auto;
+	margin-bottom: 20px;
+}
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+thead {
+	background: var(--primary);
+	color: var(--white);
+}
+th,td {
+	text-align: left;
+	padding: 10px;
+}
+tr {
+	padding: 0 10px;
+	text-transform: capitalize;
+}
+tbody tr:nth-child(even) {
+	background: var(--grey);
+}
+
+.btn-sm {
+	padding: 3px 8px 5px;
+	color: #fff;
+	margin-right: 6px;
+	margin-bottom: 2px;
+	font-size: 15px;
+	outline: none;
+	border: none;
+	text-transform: capitalize;
+	cursor: pointer;
+}
+.btn-sm:last-child {
+	margin: 0;
+}
+.btn-danger {
+	background: var(--danger);
+}
+.btn-success {
+	background: var(--success);
+}
+.btn-info {
+	background: var(--secondary);
+}
+.btn-primary {
+	background: var(--primary);
+}
+
+.row {
+	width: 80%;
+	display: flex;
+	justify-content: space-between;
+	margin: 30px auto;
+}
+
+.add {
+	outline: none;
+	border: none;
+	padding: 8px 14px;
+	font-size: 16px;
+	background: var(--secondary);
+	color: white;
+}
+
+input[placeholder='rechercher']{
+	outline: none;
+	padding: 5px 8px;
+	font-size: 16px;
+	width: 220px;
+	border-radius: 8px 0 0 8px;
+	border-top: 2px solid black;
+	border-right: 0px solid black;
+	border-bottom: 2px solid black;
+	border-left: 2px solid black;
+}
+
+.search {
+	outline: none;
+	border: none;
+	padding: 7px 14px;
+	font-size: 16px;
+	background: var(--primary);
+	color: white;
+	border-radius: 0 8px 8px 0;
+}
+
+.input {
+	position: relative;
+}
+.input input {
+	padding-right: 35px;
+}
+.input button {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	outline: none;
+	border: none;
+	background: var(--primary);
+	display: block;
+	width: 30px;
+	color: #fff;
+	height: 28px;
+	cursor: pointer;
+}
+
+/* ==== Dialogs ==== */
+.field {
+	padding: 0 30px;
+	margin-bottom: 8px;
+}
+.field label, .field input {
+	display: block;
+	width: 100%;
+}
+.field input[type='file'] {
+	padding: 0;
+	border: none;
+}
+.field label {
+	margin-bottom: 5px;	
+}
+.field input {
+	height: 28px;
+	border: none;
+	outline: none;
+	padding: 0 10px;
+	border: 1px solid #55555555;
+}
+textarea {
+	width: 100%;
+	height: 80px;
+	resize: none;
+}
+
+.btn {
+	display: block;
+	background: var(--primary);
+	color: var(--white);
+	padding: 8px 16px;
+	border: none;
+	outline: none;
+	font-size: 17px;
+	font-weight: 400;
+	margin: 0 30px 0 auto;
+	cursor: pointer;
+}
+
+.invoice{
+	/*border: 1px solid black;*/
+	width: 100%;
+	padding: 3px;
+	margin: 0;
+}
+.printable, .invoice{
+	display: none;
+}
+.invoice .border{
+	border: 10px double #444;
+	text-align: center;
+}
+@media print {
+	.nonprintable{
+		display: none!important;
+	}
+	.printable, .invoice{
+		display: inherit;
+	}
+	.table, .container{
+		margin: 0!important;
+		padding: 0!important;
+		width: 100%!important;
+	}
+}
+@media screen and (max-width: 800px) {
+	.container {
+		padding: 0 20px;
+	}
+	.table {
+		width: 90%;
+	}
+	.btn-sm {
+		font-size: 13.5px;
+		margin-bottom: 3px;
+	}
+	.row {
+		width: 90%;
+	}
+	input[placeholder='rechercher'] {
+		width: 180px;
+		font-size: 14px;
+		border-top: 1px solid black;
+		border-right: 0px solid black;
+		border-bottom: 1px solid black;
+		border-left: 1px solid black;
+	}
+	.search, .add {
+		font-size: 14px;
+	}
+}
+.logs{
+	color: red;
+}
+@media screen and (max-width: 600px) {
+	.table {
+		width: 100%;
+		overflow-x: auto;
+	}
+	table {
+		width: 700px;
+	}
+	.row {
+		width: 100%;
+	}
+	.search {
+		padding: 6px 10px;
+	}
+	.info {
+		display: block;
+		margin-bottom: 15px;
+	}
+	.desc {
+		font-size: 16px;
+		font-weight: 600;
+	}
+	.amount {
+		font-size: 15px;
+	}
+}
