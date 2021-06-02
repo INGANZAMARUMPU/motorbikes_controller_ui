@@ -46,18 +46,15 @@
         </tbody>
       </table>
     </div>
-    <DialogCustomer @close="close" :item="active_compte"
+    <DialogPersonne @close="close" :item="active_compte"
       :class="{'hidden':!customer_shown}"/>
-    <DialogUnlock @close="close" :compte="active_compte"
-      :class="{'hidden':!unlock_shown}"/>
   </div>
 </template>
 <script>
-import DialogCustomer from "../components/dialog_customer"
-import DialogUnlock from "../components/dialog_unlock"
+import DialogPersonne from "../components/dialog_personne"
 export default {
   props: {},
-  components:{DialogCustomer, DialogUnlock},
+  components:{DialogPersonne,},
   data(){
     return {
       comptes: this.$store.state.comptes,
