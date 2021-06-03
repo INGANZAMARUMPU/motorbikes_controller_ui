@@ -9,51 +9,62 @@
         <input v-model="prenom" id="prenom" type="text">
       </div>
       <div class="field">
-        <label for="cni">CNI:</label>
+        <label for="pere">Père:</label>
+        <input v-model="pere" id="pere" type="text">
+      </div>
+      <div class="field">
+        <label for="pere">Mère:</label>
+        <input v-model="pere" id="pere" type="text">
+      </div>
+      <div class="field">
+        <label for="province">Province:</label>
+        <input v-model="province" id="province" type="text">
+      </div>
+      <div class="field">
+        <label for="commune">Commune:</label>
+        <input v-model="commune" id="commune" type="text">
+      </div>
+      <div class="field">
+        <label for="colline">Colline:</label>
+        <input v-model="colline" id="colline" type="text">
+      </div>
+      <div class="field">
+        <label for="date">Date de Naissance:</label>
+        <input v-model="date" id="date" type="date">
+      </div>
+      <div class="field">
+        <label for="cni">Carte d'identité:</label>
         <input v-model="cni" id="cni" type="text">
       </div>
       <div class="field">
-        <label for="numero">Numero de telephone:</label>
-        <input v-model="telephone" id="numero" type="text">
+        <label for="etat_civil">Etat Civil:</label>
+        <input v-model="etat_civil" id="etat_civil" type="text">
       </div>
       <div class="field">
-        <label for="email">Email:</label>
-        <input v-model="email" id="email" type="email">
+        <label for="telephone">Telephone:</label>
+        <input v-model="telephone" id="telephone" type="text">
       </div>
       <div class="field">
-        <label for="password">Mot de pass:</label>
-        <input v-model="password" id="password" type="text">
+        <label for="parking">Parking:</label>
+        <input v-model="parking" id="parking" type="text">
       </div>
       <div class="field">
-        <label for="adresse">Adresse:</label>
-        <input v-model="adresse" id="adresse" type="text">
+        <label for="residence">Residence:</label>
+        <input v-model="residence" id="residence" type="text">
       </div>
       <div class="field">
-        <label for="agence">Agence:</label>
-        <select v-model="agence" id="agence">
-          <option>---</option>
-          <option v-for="agence in agences" :value="agence.id">
-            {{ agence.name }}
-          </option>
-        </select>
-      </div>
-      <div class="field">
-        <label for="diplome">Diplome:</label>
-        <input v-model="diplome" id="diplome" type="text">
-      </div>
-      <div class="field">
-        <label for="role">Role:</label>
-        <select v-model="role" id="role">
-          <option>---</option>
-          <option v-for="group in groups" :value="group.id">
-            {{group.name}}
-          </option>
-        </select>
-      </div>
-      <div class="field">
-        <label for="image">Document:</label>
+        <label for="image">Photo 1:</label>
         <input id="image" type="file" accept=".jpeg,.jpg,.png"
           @change="e => loadImage(e)">
+      </div>
+      <div class="field">
+        <label for="image">Photo 2:</label>
+        <input id="image" type="file" accept=".jpeg,.jpg,.png"
+          @change="e => loadImage(e)">
+      </div>
+      <div class="field">
+        <label for="autres">Autres:</label>
+        <textarea v-model="autres" id="autres"></textarea>
       </div>
       <label class="logs">{{ logs }}</label>
       <button @click="createMember" class="btn">Soumettre</button>

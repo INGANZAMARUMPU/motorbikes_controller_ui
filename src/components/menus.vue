@@ -18,27 +18,6 @@
             </div>
           </router-link>
         </div>
-        <div class="content-item">
-          <router-link to="/credit" v-slot="{ href, navigate, isActive, isExactActive }">
-            <div class="menu-item" @click="closeNav">
-              <a :href="href" :class="{ 'selected': isActive }" @click="navigate">Credit</a>
-            </div>
-          </router-link>
-        </div>
-        <div class="content-item">
-          <router-link to="/placement" v-slot="{ href, navigate, isActive, isExactActive }">
-            <div class="menu-item" @click="closeNav">
-              <a :href="href" :class="{ 'selected': isActive }" @click="navigate">Placement</a>
-            </div>
-          </router-link>
-        </div>
-        <div class="content-item">
-          <router-link to="/utilisateur" v-slot="{ href, navigate, isActive, isExactActive }">
-            <div class="menu-item" @click="closeNav">
-              <a :href="href" :class="{ selected: isActive }" @click="navigate">Utilisateurs</a>
-            </div>
-          </router-link>
-        </div>
       </div>
       <div class="user-infos">
         <div class="username">{{ active_user.first_name+" "+active_user.last_name }}</div>

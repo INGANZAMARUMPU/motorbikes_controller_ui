@@ -1,7 +1,9 @@
 <template>
   <div class="parent" @click.stop>
     <div class="content">
-      <div class="close" @click="close">&times;</div>
+      <div class="entire">
+        <div class="close" @click="close">&times;</div>
+      </div>
       <slot></slot>
     </div>
   </div>
@@ -27,10 +29,12 @@ export default {
 }
 .content{
   background-color: var(--white);
-  max-width: 400px;
+  max-width: 600px;
   margin: 4% auto;
   padding-bottom: 20px;
   box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 }
 .close{
   background-color: red;
@@ -43,7 +47,12 @@ export default {
   color: var(--white);
   cursor: pointer;
 }
-
+.entire{
+  grid-column: span 2;
+}
+#autres{
+  grid-row: span 2;
+}
 @media screen and (max-width: 800px) {
   .content {
     margin: 10% auto;
