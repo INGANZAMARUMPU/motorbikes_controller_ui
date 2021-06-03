@@ -230,6 +230,7 @@ textarea {
 }
 .logs{
 	color: red;
+	grid-column: span 2;
 }
 @media screen and (max-width: 600px) {
 	.table {

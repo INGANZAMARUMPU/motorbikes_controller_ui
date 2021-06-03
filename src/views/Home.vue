@@ -13,7 +13,7 @@
       <table> 
         <thead>
           <tr>
-            <th>No. compte</th>
+            <th>No. personne</th>
             <th>Nom</th>
             <th>Prenom</th>
             <th>CNI</th>
@@ -22,22 +22,22 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="compte in comptes" @click="openProfile(compte.id)">
-            <td>{{ compte.id }}</td>
-            <td>{{ compte.first_name }}</td>
-            <td>{{ compte.last_name }}</td>
-            <td>{{ compte.CNI }}</td>
-            <td>{{ compte.balance }}</td>
+          <tr v-for="personne in $store.state.personnes" @click="openProfile(personne.id)">
+            <td>{{ personne.id }}</td>
+            <td>{{ personne.nom }}</td>
+            <td>{{ personne.prenom }}</td>
+            <td>{{ personne.CNI }}</td>
+            <td>{{ personne.parking }}</td>
             <td>
-              <router-link :to="'/history/'+compte.id" v-slot="{ navigate }">
+              <router-link :to="'/history/'+personne.id" v-slot="{ navigate }">
                 <button class="btn-sm btn-info" @click.stop="navigate">
                   Historique
                 </button>
               </router-link>
-              <button class="btn-sm btn-primary" @click.stop="editCustomer(compte)">
+              <button class="btn-sm btn-primary" @click.stop="editCustomer(personne)">
                 Modifier
               </button>
-              <button class="btn-sm btn-success" @click.stop="unlockCompte(compte)">
+              <button class="btn-sm btn-success" @click.stop="unlockPesonne(personne)">
               <fa icon="unlock"/>
               </button>
               <button class="btn-sm btn-danger">Supprimer</button>
@@ -46,7 +46,7 @@
         </tbody>
       </table>
     </div>
-    <DialogPersonne @close="close" :item="active_compte"
+    <DialogPersonne @close="close" :item="active_personne"
       :class="{'hidden':!customer_shown}"/>
   </div>
 </template>
@@ -57,45 +57,45 @@ export default {
   components:{DialogPersonne,},
   data(){
     return {
-      comptes: this.$store.state.comptes,
+      personnes: this.$store.state.personnes,
       customer_shown:false, unlock_shown:false,
-      active_compte:undefined, keyword:""
+      active_personne:undefined, keyword:""
     }
   },
   watch:{
-    "$store.state.comptes"(new_val){
-      this.comptes = new_val;
+    "$store.state.personnes"(new_val){
+      this.personnes = new_val;
     },
     keyword(new_val){
-      this.comptes = this.$store.state.comptes.filter( x => {
+      this.personnes = this.$store.state.personnes.filter( x => {
          return  JSON.stringify(x).toLowerCase().includes(new_val.toLowerCase())
     })
     },
   },
   methods:{
     close(){
-      this.active_compte = null
+      this.active_personne = null
       this.customer_shown = false;
       this.unlock_shown = false;
     },
-    openProfile(compte_id){
-      this.$router.push(`/profile/${compte_id}`)
+    openProfile(personne_id){
+      this.$router.push(`/profile/${personne_id}`)
     },
-    editCustomer(compte){
-      this.active_compte = compte
+    editCustomer(personne){
+      this.active_personne = personne
       this.customer_shown = true
     },
-    unlockCompte(compte){
-      this.active_compte = compte
+    unlockPesonne(personne){
+      this.active_personne = personne
       this.unlock_shown = true
     },
-    fetchComptes(){
-    axios.get(this.url+"/compte/", this.headers)
+    fetchPesonnes(){
+    axios.get(this.url+"/personne/", this.headers)
     .then((response) => {
-      this.$store.state.comptes = response.data.results
+      this.$store.state.personnes = response.data.results
     }).catch((error) => {
       if(error.response.status == 403){
-        this.refreshToken(this.fetchComptes)
+        this.refreshToken(this.fetchPesonnes)
       } else {
         this.logs = error.response.data;
       }
@@ -103,8 +103,8 @@ export default {
     },
   },
   mounted(){
-    if(this.$store.state.comptes.length<2){
-      this.fetchComptes()
+    if(this.$store.state.personnes.length<2){
+      this.fetchPesonnes()
     }
   }
 };
