@@ -13,32 +13,24 @@
       <table> 
         <thead>
           <tr>
-            <th>No. personne</th>
             <th>Nom</th>
             <th>Prenom</th>
             <th>CNI</th>
-            <th>Somme</th>
-            <th>Options</th>
+            <th>Residence</th>
+            <th>telephone</th>
+            <th>options</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="personne in $store.state.personnes" @click="openProfile(personne.id)">
-            <td>{{ personne.id }}</td>
             <td>{{ personne.nom }}</td>
             <td>{{ personne.prenom }}</td>
-            <td>{{ personne.CNI }}</td>
-            <td>{{ personne.parking }}</td>
+            <td>{{ personne.cni }}</td>
+            <td>{{ personne.residence }}</td>
+            <td>{{ personne.telephone }}</td>
             <td>
-              <router-link :to="'/history/'+personne.id" v-slot="{ navigate }">
-                <button class="btn-sm btn-info" @click.stop="navigate">
-                  Historique
-                </button>
-              </router-link>
               <button class="btn-sm btn-primary" @click.stop="editCustomer(personne)">
                 Modifier
-              </button>
-              <button class="btn-sm btn-success" @click.stop="unlockPesonne(personne)">
-              <fa icon="unlock"/>
               </button>
               <button class="btn-sm btn-danger">Supprimer</button>
             </td>

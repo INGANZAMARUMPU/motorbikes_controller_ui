@@ -11,13 +11,6 @@
             </div>
           </router-link>
         </div>
-        <div class="content-item">
-          <router-link to="/guichet" v-slot="{ href, navigate, isActive, isExactActive }">
-            <div class="menu-item" @click="closeNav">
-              <a :href="href" :class="{ 'selected': isActive }" @click="navigate">Guichet</a>
-            </div>
-          </router-link>
-        </div>
       </div>
       <div class="user-infos">
         <div class="username">{{ active_user.first_name+" "+active_user.last_name }}</div>
@@ -54,7 +47,8 @@ export default {
 .wrapper {
   background: var(--white);
   height: 70px;
-  position: relative;
+  position: sticky;
+  top: 0;
   width: 100%;
 }
 .content {
