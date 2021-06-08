@@ -93,19 +93,27 @@ export default {
   watch:{
     item(new_val){
       if (!!new_val) {
-        // this.nom = new_val.user.last_name
-        // this.prenom = new_val.user.first_name
-        // this.cni = new_val.CNI
-        // this.telephone = new_val.phone_number
-        // this.adresse = new_val.adress
-        // this.agence = new_val.agency
-        // this.diplome = new_val.diplome
-        // this.role = new_val.user.groups[0]
-        // this.email = new_val.user.email
+        this.nom = new_val.nom
+        this.prenom = new_val.prenom
+        this.pere = new_val.pere
+        this.mere = new_val.mere
+        this.profession = new_val.profession
+        this.province = new_val.province
+        this.commune = new_val.commune
+        this.colline = new_val.colline
+        this.date_naissance = new_val.date_naissance
+        this.cni = new_val.cni
+        this.etat_civil = new_val.etat_civil
+        this.telephone = new_val.telephone
+        this.parking = new_val.parking
+        this.residence = new_val.residence
+        this.autres = new_val.autres
       } else {
-        // nom = ""; prenom = ""; cni = ""; telephone = "";
-        // adresse = ""; agence = ""; diplome = ""; role = "";
-        // password = ""; document = undefined; email = ""
+        this.nom = ""; this.prenom = ""; this.pere = ""; 
+        this.mere = ""; this.profession = ""; this.province = ""; 
+        this.commune = ""; this.colline = ""; this.date_naissance = ""; 
+        this.cni = ""; this.etat_civil = ""; this.telephone = ""; 
+        this.parking = ""; this.residence = ""; this.autres = ""; 
       }
     }
   },
@@ -151,7 +159,20 @@ export default {
       if(!this.item){
         axios.post(this.$store.state.url+"/personne/", data, this.headers)
         .then((response) => {
-          this.$store.state.users.push(response.data)
+          this.$store.state.personnes.push(response.data)
+          this.$emit("close")
+        }).catch((error) => {
+          if(error.response.status == 403){
+            this.refreshToken(this.createMember)
+          } else {
+            this.logs = JSON.stringify(error.response.data).slice(0, 120);
+          }
+        })
+      } else {
+        axios.put(this.$store.state.url+`/personne/${this.item.id}/`, data, this.headers)
+        .then((response) => {
+          let index = this.$store.state.personnes.indexOf(this.item);
+          this.$store.state.personnes[index] = response.data
           this.$emit("close")
         }).catch((error) => {
           if(error.response.status == 403){
