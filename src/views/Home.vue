@@ -30,10 +30,12 @@
             <td>{{ personne.residence }}</td>
             <td>{{ personne.telephone }}</td>
             <td>
-              <button class="btn-sm btn-primary" @click.stop="editCustomer(personne)">
+              <button class="btn-sm btn-primary" @click.stop="edit(personne)">
                 Modifier
               </button>
-              <button class="btn-sm btn-danger">Supprimer</button>
+              <button class="btn-sm btn-danger" @click.stop="remove(personne)">
+                Supprimer
+              </button>
             </td>
           </tr>
         </tbody>
@@ -75,7 +77,7 @@ export default {
     openProfile(personne_id){
       this.$router.push(`/profile/${personne_id}`)
     },
-    editCustomer(personne){
+    edit(personne){
       this.active_personne = personne
       this.customer_shown = true
     },
@@ -90,6 +92,23 @@ export default {
           this.logs = error.response.data;
         }
       })
+    },
+    remove(personne){
+      let fullname = `${personne.nom} ${personne.prenom}`
+      let confirmation = this.active_user.fullname
+      if(prompt(`Si vous voules vraiment supprimer ${fullname} veuillez taper ${confirmation}`) == confirmation){
+        axios.delete(this.url+`/personne/${personne.id}/`, this.headers)
+        .then((response) => {
+          let index = this.$store.state.personnes.indexOf(personne);
+          this.$store.state.personnes.splice(index,1)
+        }).catch((error) => {
+          if(error.response.status == 403){
+            this.refreshToken(this.fetchPesonnes)
+          } else {
+            this.logs = error.response.data;
+          }
+        })
+      }
     },
     fetchPesonnes(){
       axios.get(this.url+"/personne/", this.headers)

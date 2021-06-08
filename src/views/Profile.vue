@@ -1,14 +1,14 @@
 <template>
 	<div>
 		<div class="container">
-			<img :src="personne.photo_1">
+			<img :src="!!personne?personne.photo_1:''">
 		</div>
 		<div class="container">
-			<img :src="personne.photo_2">
+			<img :src="!!personne?personne.photo_2:''">
 		</div>
     <div class="table">
       <table>
-        <tbody>
+        <tbody v-if="!!personne">
           <tr v-for="[key, value] in Object.entries(personne)" v-if="!key.includes('photo_')">
 						<td><b>{{ key }}</b></td>
 						<td>{{ value }}</td>
@@ -29,13 +29,13 @@ export default {
   	getCompte(id){
 		axios.get(this.url+`/personne/${id}/`, this.headers)
 		.then((response) => {
-          this.personne = response.data
+      this.personne = response.data
 		}).catch((error) => {
-        if(error.response.status == 403){
-          this.refreshToken(this.performAction)
-        } else {
-          this.logs = JSON.stringify(error.response.data)
-        }
+      if(error.response.status == 403){
+        this.refreshToken(this.performAction)
+      } else {
+        this.logs = JSON.stringify(error.response.data)
+      }
 		})
   	}
   },
