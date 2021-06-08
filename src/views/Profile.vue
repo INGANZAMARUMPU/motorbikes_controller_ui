@@ -1,12 +1,12 @@
 <template>
-	<div class="container">
-		<div class="nonprintable">
-			<div>
-				<img :src="personne.photo_1">
-			</div>
-			<div>
-				<img :src="personne.photo_2">
-			</div>
+	<div>
+		<div class="container">
+			<img :src="personne.photo_1">
+		</div>
+		<div class="container">
+			<img :src="personne.photo_2">
+		</div>
+    <div class="table">
       <table>
         <tbody>
           <tr v-for="[key, value] in Object.entries(personne)" v-if="!key.includes('photo_')">

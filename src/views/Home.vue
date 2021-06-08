@@ -5,8 +5,9 @@
         Ajouter un membre
       </button>
       <div class="search-area">
-        <input type="text" placeholder="rechercher" v-model="keyword">
-        <button class="search">Rechercher</button>
+        <input type="text" placeholder="rechercher" v-model="keyword"
+          v-on:keyup.enter="rechercher">
+        <button class="search" @click="rechercher">Rechercher</button>
       </div>
     </div>
     <div class="table">
@@ -22,7 +23,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="personne in $store.state.personnes" @click="openProfile(personne.id)">
+          <tr v-for="personne in personnes" @click="openProfile(personne.id)">
             <td>{{ personne.nom }}</td>
             <td>{{ personne.prenom }}</td>
             <td>{{ personne.cni }}</td>
@@ -50,8 +51,8 @@ export default {
   data(){
     return {
       personnes: this.$store.state.personnes,
-      customer_shown:false, unlock_shown:false,
-      active_personne:undefined, keyword:""
+      customer_shown:false, active_personne:undefined,
+      keyword:""
     }
   },
   watch:{
@@ -59,9 +60,10 @@ export default {
       this.personnes = new_val;
     },
     keyword(new_val){
+      console.log(new_val)
       this.personnes = this.$store.state.personnes.filter( x => {
-         return  JSON.stringify(x).toLowerCase().includes(new_val.toLowerCase())
-    })
+           return  JSON.stringify(x).toLowerCase().includes(new_val.toLowerCase())
+      })
     },
   },
   methods:{
@@ -77,27 +79,35 @@ export default {
       this.active_personne = personne
       this.customer_shown = true
     },
-    unlockPesonne(personne){
-      this.active_personne = personne
-      this.unlock_shown = true
+    rechercher(personne){
+      axios.get(this.url+`/personne/?search=${this.keyword}`, this.headers)
+      .then((response) => {
+        this.personnes = response.data.results
+      }).catch((error) => {
+        if(error.response.status == 403){
+          this.refreshToken(this.fetchPesonnes)
+        } else {
+          this.logs = error.response.data;
+        }
+      })
     },
     fetchPesonnes(){
-    axios.get(this.url+"/personne/", this.headers)
-    .then((response) => {
-      this.$store.state.personnes = response.data.results
-    }).catch((error) => {
-      if(error.response.status == 403){
-        this.refreshToken(this.fetchPesonnes)
-      } else {
-        this.logs = error.response.data;
-      }
-    })
+      axios.get(this.url+"/personne/", this.headers)
+      .then((response) => {
+        this.$store.state.personnes = response.data.results
+      }).catch((error) => {
+        if(error.response.status == 403){
+          this.refreshToken(this.fetchPesonnes)
+        } else {
+          this.logs = error.response.data;
+        }
+      })
     },
   },
   mounted(){
-    if(this.$store.state.personnes.length<2){
+    // if(this.$store.state.personnes.length<2){
       this.fetchPesonnes()
-    }
+    // }
   }
 };
 </script>

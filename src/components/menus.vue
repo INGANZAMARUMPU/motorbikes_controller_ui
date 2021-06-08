@@ -13,7 +13,7 @@
         </div>
       </div>
       <div class="user-infos">
-        <div class="username">{{ active_user.first_name+" "+active_user.last_name }}</div>
+        <div class="username">{{ active_user.fullname }}</div>
         <button @click="logout">
           <fa icon="sign-out-alt"/>
         </button>
