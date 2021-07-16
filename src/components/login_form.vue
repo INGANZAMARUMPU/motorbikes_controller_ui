@@ -27,11 +27,12 @@ export default {
   },
   methods:{
     login(){
-      this.logs = ""
+      this.logs = "biriko biratungana..."
       axios.post(this.url+"/login/", 
         {"username": this.username, "password":this.password}
       ).then((response) => {
         this.$store.state.user = response.data
+        this.logs = "Vyakunze !"
       }).catch((error) => {
         this.logs = error.response.data
       })

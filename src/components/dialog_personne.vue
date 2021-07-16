@@ -1,80 +1,89 @@
 <template>
   <Overlay @close="$emit('close')">
-      <div class="field">
-        <label for="nom">Nom:</label>
-        <input v-model="nom" id="nom" type="text">
-      </div>
-      <div class="field">
-        <label for="prenom">Prenom:</label>
-        <input v-model="prenom" id="prenom" type="text">
-      </div>
-      <div class="field">
-        <label for="pere">Père:</label>
-        <input v-model="pere" id="pere" type="text">
-      </div>
-      <div class="field">
-        <label for="pere">Mère:</label>
-        <input v-model="mere" id="pere" type="text">
-      </div>
-      <div class="field">
-        <label for="province">Province:</label>
-        <input v-model="province" id="province" type="text">
-      </div>
-      <div class="field">
-        <label for="commune">Commune:</label>
-        <input v-model="commune" id="commune" type="text">
-      </div>
-      <div class="field">
-        <label for="colline">Colline:</label>
-        <input v-model="colline" id="colline" type="text">
-      </div>
-      <div class="field">
-        <label for="date">Date de Naissance:</label>
-        <input v-model="date_naissance" id="date" type="date">
-      </div>
-      <div class="field">
-        <label for="cni">Carte d'identité:</label>
-        <input v-model="cni" id="cni" type="text">
-      </div>
-      <div class="field">
-        <label for="etat_civil">Etat Civil:</label>
-        <select v-model="etat_civil" style="width: 100%;">
-          <option value="marie">Marié</option>
-          <option value="celibataire">Celibataire</option>
-          <option value="veuf">Veuf</option>
-          <option value="divorce">Divorcé</option>
-        </select>
-      </div>
-      <div class="field">
-        <label for="telephone">Telephone:</label>
-        <input v-model="telephone" id="telephone" type="text">
-      </div>
-      <div class="field">
-        <label for="parking">Parking:</label>
-        <input v-model="parking" id="parking" type="text">
-      </div>
-      <div class="field">
-        <label for="residence">Residence:</label>
-        <input v-model="residence" id="residence" type="text">
-      </div>
-      <div class="field">
-        <label for="image">Photo 1:</label>
-        <input id="image" type="file" accept=".jpeg,.jpg,.png"
-          @change="e => loadImage(e, 1)">
-      </div>
-      <div class="field">
-        <label for="image">Photo 2:</label>
-        <input id="image" type="file" accept=".jpeg,.jpg,.png"
-          @change="e => loadImage(e, 2)">
-      </div>
-      <div class="field">
-        <label for="autres">Autres:</label>
-        <textarea v-model="autres" id="autres"></textarea>
-      </div>
-      <label class="logs">
-        {{ logs }}
-      </label>
-      <button @click="createMember" class="btn">Soumettre</button>
+    <div class="field">
+      <label for="nom">Nom:</label>
+      <input v-model="nom" id="nom" type="text">
+    </div>
+    <div class="field">
+      <label for="prenom">Prenom:</label>
+      <input v-model="prenom" id="prenom" type="text">
+    </div>
+    <div class="field">
+      <label for="pere">Père:</label>
+      <input v-model="pere" id="pere" type="text">
+    </div>
+    <div class="field">
+      <label for="pere">Mère:</label>
+      <input v-model="mere" id="pere" type="text">
+    </div>
+    <div class="field">
+      <label for="province">Province:</label>
+      <input v-model="province" id="province" type="text">
+    </div>
+    <div class="field">
+      <label for="no_permi">Numero du permi:</label>
+      <input v-model="no_permi" id="no_permi" type="text">
+    </div>
+    <div class="field">
+      <label for="no_badge">Numero de badge:</label>
+      <input v-model="no_badge" id="no_badge" type="text">
+    </div>
+    <div class="field">
+      <label for="commune">Commune:</label>
+      <input v-model="commune" id="commune" type="text">
+    </div>
+    <div class="field">
+      <label for="colline">Colline:</label>
+      <input v-model="colline" id="colline" type="text">
+    </div>
+    <div class="field">
+      <label for="date">Date de Naissance:</label>
+      <input v-model="date_naissance" id="date" type="date">
+    </div>
+    <div class="field">
+      <label for="cni">Carte d'identité:</label>
+      <input v-model="cni" id="cni" type="text">
+    </div>
+    <div class="field">
+      <label for="etat_civil">Etat Civil:</label>
+      <select v-model="etat_civil" style="width: 100%;">
+        <option value="marie">Marié</option>
+        <option value="celibataire">Celibataire</option>
+        <option value="veuf">Veuf</option>
+        <option value="divorce">Divorcé</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="telephone">Telephone:</label>
+      <input v-model="telephone" id="telephone" type="text">
+    </div>
+    <div class="field">
+      <label for="parking">Parking:</label>
+      <input v-model="parking" id="parking" type="text">
+    </div>
+    <div class="field">
+      <label for="residence">Residence:</label>
+      <input v-model="residence" id="residence" type="text">
+    </div>
+    <div class="field">
+      <label for="image">Photo 1:</label>
+      <input id="image" type="file" accept=".jpeg,.jpg,.png"
+        @change="e => loadImage(e, 1)">
+    </div>
+    <div class="field">
+      <label for="image">Photo 2:</label>
+      <input id="image" type="file" accept=".jpeg,.jpg,.png"
+        @change="e => loadImage(e, 2)">
+    </div>
+    <div class="field">
+      <label for="autres">Autres:</label>
+      <textarea v-model="autres" id="autres"></textarea>
+    </div>
+    <label class="logs">
+      {{ logs }}
+    </label>
+    <button type="reset" id="reset_button">Reset</button>
+    <button @click.prevent="createMember" class="btn">Soumettre</button>
   </Overlay>
 </template>
 <script>
@@ -87,7 +96,7 @@ export default {
       nom:"", prenom:"", pere:"", mere:"", profession:"", province:"",
       commune:"", colline:"", date_naissance:"", cni:"", etat_civil:"",
       telephone:"", parking:"", residence:"", photo_1:null, photo_2:null,
-      autres:"", logs:""
+      autres:"", logs:"", no_permi:"", no_badge:""
     }
   },
   watch:{
@@ -103,17 +112,16 @@ export default {
         this.colline = new_val.colline
         this.date_naissance = new_val.date_naissance
         this.cni = new_val.cni
+        this.no_permi = new_val.no_permi
+        this.no_badge = new_val.no_badge
         this.etat_civil = new_val.etat_civil
         this.telephone = new_val.telephone
         this.parking = new_val.parking
         this.residence = new_val.residence
         this.autres = new_val.autres
       } else {
-        this.nom = ""; this.prenom = ""; this.pere = ""; 
-        this.mere = ""; this.profession = ""; this.province = ""; 
-        this.commune = ""; this.colline = ""; this.date_naissance = ""; 
-        this.cni = ""; this.etat_civil = ""; this.telephone = ""; 
-        this.parking = ""; this.residence = ""; this.autres = ""; 
+        // form.reset()
+        reset_button.click()
       }
     }
   },
@@ -132,8 +140,8 @@ export default {
       }
     },
     createMember(){
-      this.logs = ""
-      if(!this.photo_1){
+      this.logs = "biriko biratungana..."
+      if(!this.photo_1 && !this.item){
         this.logs = "la première photo est obligatoire"
         return;
       }
@@ -148,20 +156,24 @@ export default {
       data.append("colline", this.colline)
       data.append("date_naissance", this.date_naissance)
       data.append("cni", this.cni)
+      data.append("no_permi", this.no_permi)
+      data.append("no_badge", this.no_badge)
       data.append("etat_civil", this.etat_civil)
       data.append("telephone", this.telephone)
       data.append("parking", this.parking)
       data.append("residence", this.residence)
-      data.append("photo_1", this.photo_1)
-      data.append("photo_2", this.photo_2)
+      if(!!this.photo_1) data.append("photo_1", this.photo_1)
+      if(!!this.photo_2) data.append("photo_2", this.photo_2)
       data.append("autres", this.autres)
 
       if(!this.item){
         axios.post(this.$store.state.url+"/personne/", data, this.headers)
         .then((response) => {
           this.$store.state.personnes.push(response.data)
+          this.logs = "vyakunze!"
           this.$emit("close")
         }).catch((error) => {
+          this.logs = "vyanse!"
           if(error.response.status == 403){
             this.refreshToken(this.createMember)
           } else {
@@ -169,12 +181,14 @@ export default {
           }
         })
       } else {
-        axios.put(this.$store.state.url+`/personne/${this.item.id}/`, data, this.headers)
+        axios.patch(this.$store.state.url+`/personne/${this.item.id}/`, data, this.headers)
         .then((response) => {
           let index = this.$store.state.personnes.indexOf(this.item);
           this.$store.state.personnes[index] = response.data
+          this.logs = "vyakunze!"
           this.$emit("close")
         }).catch((error) => {
+          this.logs = "vyanse!"
           if(error.response.status == 403){
             this.refreshToken(this.createMember)
           } else {

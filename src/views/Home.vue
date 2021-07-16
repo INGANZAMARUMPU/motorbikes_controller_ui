@@ -17,7 +17,8 @@
             <th>Nom</th>
             <th>Prenom</th>
             <th>CNI</th>
-            <th>Residence</th>
+            <th>No. Badge</th>
+            <th>No. Permi</th>
             <th>telephone</th>
             <th>options</th>
           </tr>
@@ -27,7 +28,8 @@
             <td>{{ personne.nom }}</td>
             <td>{{ personne.prenom }}</td>
             <td>{{ personne.cni }}</td>
-            <td>{{ personne.residence }}</td>
+            <td>{{ personne.no_permi }}</td>
+            <td>{{ personne.no_badge }}</td>
             <td>{{ personne.telephone }}</td>
             <td>
               <button class="btn-sm btn-primary" @click.stop="edit(personne)">

@@ -1,11 +1,11 @@
 <template>
-  <div class="parent" @click.stop>
-    <div class="content">
+  <div class="parent" @click.stop id="form">
+    <form class="content">
       <div class="entire">
         <div class="close" @click="close">&times;</div>
       </div>
       <slot></slot>
-    </div>
+    </form>
   </div>
 </template>
 <script>
