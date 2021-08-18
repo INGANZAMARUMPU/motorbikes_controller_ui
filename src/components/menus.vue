@@ -14,8 +14,8 @@
       </div>
       <div class="user-infos">
         <div class="username">{{ active_user.fullname }}</div>
-        <button @click="logout">
-          <fa icon="sign-out-alt"/>
+        <button @click="logout" class="btn-sm btn-danger">
+          <fa icon="power-off"/>
         </button>
       </div>
     </div>

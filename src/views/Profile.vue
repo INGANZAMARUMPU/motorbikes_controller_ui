@@ -7,10 +7,12 @@
 			<img :src="!!personne?personne.photo_2:''">
 		</div>
     <div class="table">
-      <table>
+      <table class="infotable">
         <tbody v-if="!!personne">
           <tr v-for="[key, value] in Object.entries(personne)" v-if="!key.includes('photo_')">
-						<td><b>{{ key.replace("no_", "Numero de ").replace("_", " ") }}</b></td>
+						<td>
+							<b>{{ key.replace("no_", "Numero de ").replace("_", " ") }}</b>
+						</td>
 						<td>{{ value }}</td>
           </tr>
         </tbody>

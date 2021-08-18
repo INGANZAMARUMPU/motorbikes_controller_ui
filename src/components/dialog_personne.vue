@@ -82,8 +82,10 @@
     <label class="logs">
       {{ logs }}
     </label>
-    <button type="reset" id="reset_button">Reset</button>
-    <button @click.prevent="createMember" class="btn">Soumettre</button>
+    <div class="buttons">
+      <button type="reset" id="reset_button" class="btn btn-info">Reset</button>
+      <button @click.prevent="createMember" class="btn btn-success">Soumettre</button>
+    </div>
   </Overlay>
 </template>
 <script>
@@ -201,4 +203,10 @@ export default {
 };
 </script>
 <style scoped>
+.buttons{
+  grid-column: span 2;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 30px;
+}
 </style>

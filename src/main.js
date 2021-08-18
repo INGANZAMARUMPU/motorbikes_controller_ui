@@ -6,14 +6,14 @@ import store from './store'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import {
-	faCheck, faTimes, faUser, faSignOutAlt, faSearch, faUnlock,
+	faCheck, faTimes, faUser, faPowerOff, faSearch, faUnlock,
   faPen
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(faCheck)
 library.add(faTimes)
 library.add(faUser)
-library.add(faSignOutAlt)
+library.add(faPowerOff)
 library.add(faSearch)
 library.add(faUnlock)
 library.add(faPen)
